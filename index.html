@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Campus Healthcare</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">+</div>
+        <div>
+          <p>Campus Care</p>
+          <h1>Smart Campus Healthcare Portal</h1>
+        </div>
+      </div>
+
+      <nav class="role-switcher" aria-label="Portal roles">
+        <button class="role-btn active" data-role="student" type="button">Student</button>
+        <button class="role-btn" data-role="receptionist" type="button">Receptionist</button>
+        <button class="role-btn" data-role="doctor" type="button">Doctor</button>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <div id="notification-banner" class="notification" role="status" aria-live="polite"></div>
+
+      <section id="student-view" class="view-panel active" aria-label="Student dashboard">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Student services</p>
+            <h2>Book an appointment</h2>
+          </div>
+        </div>
+
+        <form id="booking-form" class="booking-form">
+          <div class="form-grid">
+            <label class="field">
+              <span>Student ID</span>
+              <input id="student-id" name="studentId" type="text" placeholder="e.g. STU-2048" required />
+            </label>
+
+            <label class="field">
+              <span>Full name</span>
+              <input id="student-name" name="studentName" type="text" placeholder="Your full name" required />
+            </label>
+
+            <label class="field">
+              <span>Department</span>
+              <select id="department" name="department" required>
+                <option value="">Select department</option>
+                <option>Computer Science</option>
+                <option>Engineering</option>
+                <option>Business</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Preferred doctor</span>
+              <select id="doctor" name="doctor" required>
+                <option value="">Choose doctor</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Appointment date</span>
+              <input id="appointment-date" name="date" type="date" required />
+            </label>
+
+            <label class="field">
+              <span>Time slot</span>
+              <select id="time-slot" name="time" required>
+                <option value="">Select time</option>
+                <option>09:00 AM</option>
+                <option>10:30 AM</option>
+                <option>12:00 PM</option>
+                <option>02:00 PM</option>
+                <option>03:30 PM</option>
+              </select>
+            </label>
+
+            <label class="field wide">
+              <span>Health concern</span>
+              <select id="concern" name="concern" required>
+                <option value="">Select concern</option>
+                <option>General consultation</option>
+                <option>Respiratory issue</option>
+                <option>Stress and wellness</option>
+                <option>Injury review</option>
+              </select>
+            </label>
+
+            <label class="field wide">
+              <span>Notes</span>
+              <textarea id="notes" name="notes" rows="4" placeholder="Briefly describe your issue or symptoms"></textarea>
+            </label>
+          </div>
+
+          <button class="primary-btn" type="submit">Book appointment</button>
+        </form>
+      </section>
+
+      <section id="receptionist-view" class="view-panel" aria-label="Receptionist dashboard">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Operations desk</p>
+            <h2>Receptionist dashboard</h2>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <span>Total booked</span>
+            <strong id="total-bookings">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Pending</span>
+            <strong id="pending-bookings">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Completed</span>
+            <strong id="completed-bookings">0</strong>
+          </article>
+        </div>
+
+        <div id="appointment-list" class="appointment-list"></div>
+      </section>
+
+      <section id="doctor-view" class="view-panel" aria-label="Doctor dashboard">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Care team</p>
+            <h2>Doctor queue</h2>
+          </div>
+        </div>
+
+        <div id="doctor-queue" class="doctor-queue"></div>
+      </section>
+    </main>
+  </body>
+</html>
