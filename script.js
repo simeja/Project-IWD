@@ -36,7 +36,8 @@ const state = {
       concern: 'Vaccination follow-up',
       notes: 'Review of booster records.',
       status: 'Completed'
-    }
+ }
+ 
   ],
   nextId: 4
 };
