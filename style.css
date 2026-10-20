@@ -81,31 +81,6 @@ textarea {
   font-size: clamp(1.5rem, 2vw, 2rem);
 }
 
-.role-switcher {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.role-btn {
-  border: 1px solid rgba(14, 124, 134, 0.2);
-  background: white;
-  color: var(--ink);
-  border-radius: 999px;
-  padding: 0.7rem 1.2rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.role-btn:hover,
-.role-btn.active {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: white;
-  box-shadow: 0 12px 24px rgba(14, 124, 134, 0.18);
-}
-
 .layout {
   width: min(1100px, calc(100% - 32px));
   margin: 2rem auto 4rem;
@@ -149,6 +124,50 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+.login-panel {
+  min-width: 0;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(29, 74, 85, 0.08);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+}
+
+.login-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+#login-options[hidden] {
+  display: none;
+}
+
+.login-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.login-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.logout-btn {
+  border: 1px solid rgba(14, 124, 134, 0.2);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  background: white;
+  color: var(--primary-dark);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: var(--panel-soft);
 }
 
 .form-grid {
@@ -394,7 +413,8 @@ textarea {
   }
 
   .form-grid,
-  .stats-grid {
+  .stats-grid,
+  .login-grid {
     grid-template-columns: 1fr;
   }
 

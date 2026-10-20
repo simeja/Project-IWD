@@ -1,5 +1,6 @@
 const state = {
   role: 'student',
+  authorizedRole: null,
   appointments: [
     {
       id: 1,
@@ -45,14 +46,11 @@ const state = {
 function switchRole(role) {
   state.role = role;
 
-  document.querySelectorAll('.role-btn').forEach((button) => {
-    const isActive = button.dataset.role === role;
-    button.classList.toggle('active', isActive);
-    button.setAttribute('aria-pressed', String(isActive));
-  });
+  const loginOptions = document.getElementById('login-options');
+  if (loginOptions) loginOptions.hidden = state.authorizedRole === role;
 
-  document.querySelectorAll('.view-panel').forEach((panel) => {
-    panel.classList.toggle('active', panel.id === `${role}-view`);
+  document.querySelectorAll('.dashboard-panel').forEach((panel) => {
+    panel.classList.toggle('active', state.authorizedRole === role && panel.id === `${role}-view`);
   });
 }
 
@@ -182,15 +180,45 @@ function updateAppointmentStatus(id, status) {
   showNotification(`Appointment marked as ${status}.`, 'info');
 }
 
-function setupEventListeners() {
-  document.querySelectorAll('.role-btn').forEach((button) => {
-    button.addEventListener('click', () => switchRole(button.dataset.role));
-  });
+function handleLogin(event) {
+  event.preventDefault();
 
+  const form = event.currentTarget;
+  const formData = new FormData(form);
+  const username = String(formData.get('username') || '').trim();
+  const password = String(formData.get('password') || '');
+  const role = form.dataset.loginRole;
+
+  if (!username || !password || !['student', 'receptionist', 'doctor'].includes(role)) {
+    showNotification('Enter your login details to continue.', 'error');
+    return;
+  }
+
+  state.authorizedRole = role;
+  form.reset();
+  switchRole(role);
+  showNotification(`Logged in to the ${role} portal.`, 'success');
+}
+
+function handleLogout() {
+  state.authorizedRole = null;
+  switchRole(state.role);
+  showNotification('You have been logged out.', 'info');
+}
+
+function setupEventListeners() {
   const bookingForm = document.getElementById('booking-form');
   if (bookingForm) {
     bookingForm.addEventListener('submit', handleBooking);
   }
+
+  document.querySelectorAll('.login-form').forEach((form) => {
+    form.addEventListener('submit', handleLogin);
+  });
+
+  document.querySelectorAll('[data-logout]').forEach((button) => {
+    button.addEventListener('click', handleLogout);
+  });
 
   document.addEventListener('click', (event) => {
     const button = event.target.closest('[data-status]');

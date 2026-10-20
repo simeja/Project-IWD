@@ -17,22 +17,83 @@
         </div>
       </div>
 
-      <nav class="role-switcher" aria-label="Portal roles">
-        <button class="role-btn active" data-role="student" type="button">Student</button>
-        <button class="role-btn" data-role="receptionist" type="button">Receptionist</button>
-        <button class="role-btn" data-role="doctor" type="button">Doctor</button>
-      </nav>
     </header>
 
     <main class="layout">
       <div id="notification-banner" class="notification" role="status" aria-live="polite"></div>
 
-      <section id="student-view" class="view-panel active" aria-label="Student dashboard">
+      <div id="login-options" class="login-grid">
+      <section id="student-login-view" class="login-panel" aria-label="Student login">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Student access</p>
+            <h2>Student login</h2>
+          </div>
+        </div>
+        <form class="login-form" data-login-role="student">
+          <label class="field">
+            <span>Student ID</span>
+            <input name="username" type="text" autocomplete="username" placeholder="Enter your student ID" required />
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required />
+          </label>
+          <p class="login-note">Demo portal: enter any student ID and password to continue.</p>
+          <button class="primary-btn" type="submit">Log in as student</button>
+        </form>
+      </section>
+
+      <section id="receptionist-login-view" class="login-panel" aria-label="Receptionist login">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Operations access</p>
+            <h2>Receptionist login</h2>
+          </div>
+        </div>
+        <form class="login-form" data-login-role="receptionist">
+          <label class="field">
+            <span>Work email</span>
+            <input name="username" type="email" autocomplete="username" placeholder="name@campus.edu" required />
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required />
+          </label>
+          <p class="login-note">Demo portal: enter any work email and password to continue.</p>
+          <button class="primary-btn" type="submit">Log in as receptionist</button>
+        </form>
+      </section>
+
+      <section id="doctor-login-view" class="login-panel" aria-label="Doctor login">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Clinical access</p>
+            <h2>Doctor login</h2>
+          </div>
+        </div>
+        <form class="login-form" data-login-role="doctor">
+          <label class="field">
+            <span>Work email</span>
+            <input name="username" type="email" autocomplete="username" placeholder="doctor@campus.edu" required />
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required />
+          </label>
+          <p class="login-note">Demo portal: enter any work email and password to continue.</p>
+          <button class="primary-btn" type="submit">Log in as doctor</button>
+        </form>
+      </section>
+      </div>
+
+      <section id="student-view" class="view-panel dashboard-panel" aria-label="Student dashboard">
         <div class="panel-header">
           <div>
             <p class="eyebrow">Student services</p>
             <h2>Book an appointment</h2>
           </div>
+          <button class="logout-btn" type="button" data-logout>Log out</button>
         </div>
 
         <form id="booking-form" class="booking-form">
@@ -104,12 +165,13 @@
         </form>
       </section>
 
-      <section id="receptionist-view" class="view-panel" aria-label="Receptionist dashboard">
+      <section id="receptionist-view" class="view-panel dashboard-panel" aria-label="Receptionist dashboard">
         <div class="panel-header">
           <div>
             <p class="eyebrow">Operations desk</p>
             <h2>Receptionist dashboard</h2>
           </div>
+          <button class="logout-btn" type="button" data-logout>Log out</button>
         </div>
 
         <div class="stats-grid">
@@ -130,12 +192,13 @@
         <div id="appointment-list" class="appointment-list"></div>
       </section>
 
-      <section id="doctor-view" class="view-panel" aria-label="Doctor dashboard">
+      <section id="doctor-view" class="view-panel dashboard-panel" aria-label="Doctor dashboard">
         <div class="panel-header">
           <div>
             <p class="eyebrow">Care team</p>
             <h2>Doctor queue</h2>
           </div>
+          <button class="logout-btn" type="button" data-logout>Log out</button>
         </div>
 
         <div id="doctor-queue" class="doctor-queue"></div>
